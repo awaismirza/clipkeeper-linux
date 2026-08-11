@@ -43,25 +43,12 @@ pub fn run() {
                             Some(Modifiers::ALT | Modifiers::SHIFT),
                             Code::KeyV,
                         );
-                        let super_shortcut = Shortcut::new(
-                            Some(Modifiers::SUPER | Modifiers::SHIFT),
-                            Code::KeyV,
-                        );
-                        let ctrl_shortcut = Shortcut::new(
-                            Some(Modifiers::CONTROL | Modifiers::SHIFT),
-                            Code::KeyV,
-                        );
 
                         let shortcut_str = shortcut.to_string().to_lowercase();
                         eprintln!("[DEBUG] Shortcut string: {}", shortcut_str);
 
                         let is_match = shortcut == &alt_shortcut
-                            || shortcut == &super_shortcut 
-                            || shortcut == &ctrl_shortcut
-                            || shortcut_str.contains("alt") && shortcut_str.contains("v")
-                            || shortcut_str.contains("super") && shortcut_str.contains("v")
-                            || shortcut_str.contains("control") && shortcut_str.contains("v")
-                            || shortcut_str.contains("ctrl") && shortcut_str.contains("v");
+                            || (shortcut_str.contains("alt") && shortcut_str.contains("v"));
 
                         if is_match {
                             eprintln!("[DEBUG] Shortcut matched! Toggling window...");
@@ -97,31 +84,15 @@ pub fn run() {
             let db_for_state = db.clone();
             app.manage(Mutex::new(AppState { db: db_for_state }));
 
-            // Register global shortcuts: Alt+Shift+V, Super+Shift+V, Ctrl+Shift+V
+            // Register global shortcut: Alt+Shift+V
             let alt_shortcut = Shortcut::new(
                 Some(Modifiers::ALT | Modifiers::SHIFT),
-                Code::KeyV,
-            );
-            let super_shortcut = Shortcut::new(
-                Some(Modifiers::SUPER | Modifiers::SHIFT),
-                Code::KeyV,
-            );
-            let ctrl_shortcut = Shortcut::new(
-                Some(Modifiers::CONTROL | Modifiers::SHIFT),
                 Code::KeyV,
             );
 
             match app.global_shortcut().register(alt_shortcut) {
                 Ok(_) => eprintln!("[DEBUG] Successfully registered Alt+Shift+V ({:?})", alt_shortcut),
                 Err(e) => eprintln!("[ERROR] Failed to register Alt+Shift+V: {:?}", e),
-            }
-            match app.global_shortcut().register(super_shortcut) {
-                Ok(_) => eprintln!("[DEBUG] Successfully registered Super+Shift+V ({:?})", super_shortcut),
-                Err(e) => eprintln!("[ERROR] Failed to register Super+Shift+V: {:?}", e),
-            }
-            match app.global_shortcut().register(ctrl_shortcut) {
-                Ok(_) => eprintln!("[DEBUG] Successfully registered Ctrl+Shift+V ({:?})", ctrl_shortcut),
-                Err(e) => eprintln!("[ERROR] Failed to register Ctrl+Shift+V: {:?}", e),
             }
 
             // Add system tray icon for top bar in Ubuntu
@@ -139,7 +110,7 @@ pub fn run() {
 
                 let _tray = TrayIconBuilder::new()
                     .icon(icon.clone())
-                    .tooltip("ClipKeeper Clipboard Manager (Super+Shift+V)")
+                    .tooltip("ClipKeeper Clipboard Manager (Alt+Shift+V)")
                     .menu(&tray_menu)
                     .show_menu_on_left_click(false)
                     .on_menu_event(|app, event| match event.id.as_ref() {
