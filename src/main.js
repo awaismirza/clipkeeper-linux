@@ -170,7 +170,8 @@ function renderList() {
       } else {
         selectedIndex = index;
         updateSelectionHighlight();
-        selectAndCopyItem(item.id);
+        const shouldPaste = !e.shiftKey;
+        selectAndCopyItem(item.id, shouldPaste);
       }
     });
 
@@ -200,12 +201,12 @@ function scrollSelectedIntoView() {
   }
 }
 
-// Select & Copy Item Back to System Clipboard
-async function selectAndCopyItem(id) {
+// Select & Copy Item Back to System Clipboard (with optional Auto-Paste)
+async function selectAndCopyItem(id, paste = true) {
   if (!invoke) return;
 
   try {
-    await invoke('copy_to_clipboard', { id });
+    await invoke('copy_to_clipboard', { id, paste });
   } catch (err) {
     console.error('Failed to copy to clipboard:', err);
   }
@@ -298,7 +299,8 @@ function setupEventListeners() {
       e.preventDefault();
       const currentItem = historyItems[selectedIndex];
       if (currentItem) {
-        selectAndCopyItem(currentItem.id);
+        const shouldPaste = !e.shiftKey;
+        selectAndCopyItem(currentItem.id, shouldPaste);
       }
     } else if (e.key === 'Escape') {
       e.preventDefault();
