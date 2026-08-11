@@ -2,7 +2,7 @@
 
 **ClipKeeper** is an ultra-lightweight, production-ready system clipboard manager built with **Tauri v2** and **Rust**, specifically optimized for Linux environments (supporting both X11 and Wayland).
 
-![ClipKeeper Release](https://img.shields.io/github/v/release/awaismirza/clipboard-linux?color=blue&label=version)
+![ClipKeeper Release](https://img.shields.io/github/v/release/awaismirza/clipkeeper-linux?color=blue&label=version)
 ![Platform](https://img.shields.io/badge/platform-Linux%20ARM64-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -23,24 +23,24 @@
 
 ### Option 1: Debian / Ubuntu (`.deb`)
 
-Download the latest `.deb` package from [Releases](https://github.com/awaismirza/clipboard-linux/releases/latest):
+Download the latest `.deb` package from [Releases](https://github.com/awaismirza/clipkeeper-linux/releases/latest):
 
 ```bash
-wget https://github.com/awaismirza/clipboard-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_arm64.deb
+wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_arm64.deb
 sudo dpkg -i ClipKeeper_0.1.0_arm64.deb
 ```
 
 ### Option 2: Fedora / RHEL (`.rpm`)
 
 ```bash
-wget https://github.com/awaismirza/clipboard-linux/releases/download/v0.1.0/ClipKeeper-0.1.0-1.aarch64.rpm
+wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper-0.1.0-1.aarch64.rpm
 sudo rpm -i ClipKeeper-0.1.0-1.aarch64.rpm
 ```
 
 ### Option 3: Standalone AppImage
 
 ```bash
-wget https://github.com/awaismirza/clipboard-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_aarch64.AppImage
+wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_aarch64.AppImage
 chmod +x ClipKeeper_0.1.0_aarch64.AppImage
 ./ClipKeeper_0.1.0_aarch64.AppImage
 ```
@@ -72,7 +72,7 @@ chmod +x ClipKeeper_0.1.0_aarch64.AppImage
 
 ```bash
 # Clone the repository
-git clone https://github.com/awaismirza/clipboard-linux.git
+git clone https://github.com/awaismirza/clipkeeper-linux.git
 cd clipboard-linux
 
 # Install dependencies
