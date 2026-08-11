@@ -55,7 +55,8 @@ chmod +x ClipKeeper_0.1.0_aarch64.AppImage
 | `Super + Shift + V` | Alternate global shortcut |
 | `Ctrl + Shift + V` | Alternate global shortcut |
 | `Arrow Keys` / `Tab` | Navigate search items |
-| `Enter` | Copy selected item to clipboard |
+| `Enter` | Copy selected item and auto-paste (`Ctrl+V`) into target application |
+| `Shift + Enter` | Copy selected item to clipboard without auto-pasting |
 | `Esc` | Close search palette |
 
 ---
