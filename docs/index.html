@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClipKeeper — Ultra-Fast System Clipboard Manager for Linux</title>
+  <meta name="description" content="ClipKeeper is a lightweight, production-ready system clipboard manager for Linux ARM64 & x86_64, built with Tauri v2 and Rust. Press Alt+Shift+V anywhere to access clip history.">
+  <meta name="keywords" content="linux clipboard manager, tauri clipboard, rust clipboard, ubuntu clipboard, wayland clipboard manager">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="ClipKeeper — Ultra-Fast Linux Clipboard Manager">
+  <meta property="og:description" content="Lightweight system clipboard manager with Alt+Shift+V global hotkey, SQLite engine, and native Wayland/X11 support.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://awaismirza.github.io/clipkeeper-linux/">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <path d="M9 14l2 2 4-4"></path>
+        </svg>
+        <span class="logo-text">ClipKeeper</span>
+        <span class="badge">v0.1.1</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/awaismirza/clipkeeper-linux" target="_blank" class="github-link" id="nav-github-link">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="pill-badge">
+          <span class="pulse-dot"></span> Linux Desktop Clipboard Manager
+        </div>
+        <h1 class="hero-title">
+          Your Clipboard History, <br>
+          <span class="accent-text">Instantly Accessible.</span>
+        </h1>
+        <p class="hero-subtitle">
+          An ultra-fast, lightweight Linux clipboard manager powered by Rust & Tauri v2. 
+          Press <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> anywhere on Wayland or X11 to recall text, code snippets, and items.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary" id="hero-download-btn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Download v0.1.1
+          </a>
+          <a href="https://github.com/awaismirza/clipkeeper-linux" target="_blank" class="btn btn-secondary" id="hero-github-btn">
+            View Source Code
+          </a>
+        </div>
+
+        <div class="shortcut-hero-pill">
+          <span class="shortcut-label">Global Shortcut:</span>
+          <div class="keys">
+            <kbd>Alt</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>V</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Interface Mockup -->
+      <div class="hero-mockup">
+        <div class="window-frame">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="window-title">ClipKeeper Search Palette</div>
+          </div>
+          
+          <div class="mockup-body">
+            <div class="search-bar">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input type="text" placeholder="Search history... (500 clips saved)" readonly value="git commit">
+            </div>
+
+            <div class="filter-tabs">
+              <span class="tab active">All</span>
+              <span class="tab">Text</span>
+              <span class="tab">Code</span>
+              <span class="tab">Pinned</span>
+            </div>
+
+            <div class="clip-list">
+              <div class="clip-item selected">
+                <div class="clip-meta">
+                  <span class="clip-type code">Code</span>
+                  <span class="clip-time">Just now</span>
+                </div>
+                <div class="clip-text">git commit -m "feat: restrict shortcut strictly to Alt+Shift+V"</div>
+                <div class="clip-hint">Press Enter to Copy</div>
+              </div>
+
+              <div class="clip-item">
+                <div class="clip-meta">
+                  <span class="clip-type text">Text</span>
+                  <span class="clip-time">2 mins ago</span>
+                </div>
+                <div class="clip-text">https://github.com/awaismirza/clipkeeper-linux</div>
+              </div>
+
+              <div class="clip-item">
+                <div class="clip-meta">
+                  <span class="clip-type code">Code</span>
+                  <span class="clip-time">15 mins ago</span>
+                </div>
+                <div class="clip-text">sudo dpkg -i ClipKeeper_0.1.1_arm64.deb</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Designed for Modern Linux Desktops</h2>
+        <p class="section-subtitle">Engineered with Rust for near-zero memory footprint and zero CPU idle usage.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3>Wayland & X11 Native</h3>
+          <p>Seamlessly integrates with GNOME Shell custom shortcuts via gsettings, bypassing Wayland background hotkey isolation restrictions.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h3>SQLite Fast Storage</h3>
+          <p>Local, encrypted SQLite database indexed for instant search. Auto-rotates and caps history at 500 entries.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Low CPU Footprint</h3>
+          <p>SHA-256 content deduplication worker thread ensures clipboard polling consumes 0.0% CPU when idle.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3>Top-Bar System Tray</h3>
+          <p>Integrated status indicator in the GNOME top bar with instant menu actions for quick access.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Section -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Try the Interactive Search Demo</h2>
+        <p class="section-subtitle">Experience how fast ClipKeeper filters through clipboard items.</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="demo-search">
+          <input type="text" id="demo-search-input" placeholder="Type to filter history (e.g. 'git', 'deb', 'https')...">
+        </div>
+
+        <div class="demo-clips" id="demo-clip-container">
+          <!-- Dynamic Clips Rendered via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section class="download-section" id="download">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Download ClipKeeper v0.1.1</h2>
+        <p class="section-subtitle">Pre-built binaries for Ubuntu, Debian, Fedora, and AppImage.</p>
+      </div>
+
+      <div class="download-cards">
+        <!-- DEB Card -->
+        <div class="download-card highlight">
+          <div class="card-badge">Popular</div>
+          <div class="os-icon">Debian / Ubuntu</div>
+          <h3>.deb Package</h3>
+          <p class="card-desc">For Ubuntu 20.04+, Debian, Linux Mint, Pop!_OS</p>
+          <a href="https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.1/ClipKeeper_0.1.1_arm64.deb" class="btn btn-primary btn-block" id="download-deb-btn">
+            Download .deb (ARM64)
+          </a>
+        </div>
+
+        <!-- RPM Card -->
+        <div class="download-card">
+          <div class="os-icon">Fedora / RHEL</div>
+          <h3>.rpm Package</h3>
+          <p class="card-desc">For Fedora 36+, RHEL, CentOS, OpenSUSE</p>
+          <a href="https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.1/ClipKeeper-0.1.1-1.aarch64.rpm" class="btn btn-secondary btn-block" id="download-rpm-btn">
+            Download .rpm (aarch64)
+          </a>
+        </div>
+
+        <!-- AppImage Card -->
+        <div class="download-card">
+          <div class="os-icon">Universal Linux</div>
+          <h3>.AppImage</h3>
+          <p class="card-desc">Standalone binary runs on any Linux distro without installation</p>
+          <a href="https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.1/ClipKeeper_0.1.1_aarch64.AppImage" class="btn btn-secondary btn-block" id="download-appimage-btn">
+            Download AppImage
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Install Terminal Command -->
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <span class="terminal-title">Quick Terminal Installation (Ubuntu/Debian)</span>
+          <button class="copy-cmd-btn" id="copy-cmd-btn">Copy Command</button>
+        </div>
+        <pre class="terminal-body"><code id="terminal-code">wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.1/ClipKeeper_0.1.1_arm64.deb && sudo dpkg -i ClipKeeper_0.1.1_arm64.deb</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">ClipKeeper</span>
+        <span class="footer-copy">© 2026 Awais Mirza. Released under the MIT License.</span>
+      </div>
+
+      <div class="footer-right">
+        <a href="https://github.com/awaismirza/clipkeeper-linux" target="_blank">GitHub Repository</a>
+        <a href="https://github.com/awaismirza/clipkeeper-linux/releases" target="_blank">Releases</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
