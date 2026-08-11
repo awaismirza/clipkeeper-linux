@@ -7,7 +7,7 @@ use commands::*;
 use monitor::start_clipboard_monitor;
 use storage::Database;
 use std::sync::Mutex;
-use tauri::{Manager, WindowEvent};
+use tauri::{Emitter, Manager, WindowEvent};
 use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut, ShortcutState};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -26,11 +26,13 @@ pub fn run() {
                         let _ = window.show();
                         let _ = window.unminimize();
                         let _ = window.set_focus();
+                        let _ = window.emit("window-focused", ());
                     }
                 } else {
                     let _ = window.show();
                     let _ = window.unminimize();
                     let _ = window.set_focus();
+                    let _ = window.emit("window-focused", ());
                 }
             }
         }))
@@ -61,6 +63,7 @@ pub fn run() {
                                     let _ = window.show();
                                     let _ = window.unminimize();
                                     let _ = window.set_focus();
+                                    let _ = window.emit("window-focused", ());
                                 }
                             }
                         }

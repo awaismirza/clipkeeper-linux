@@ -21,10 +21,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupEventListeners();
   await loadHistory();
   setupTauriListeners();
-  
-  // Ensure search input is focused whenever app opens
-  setTimeout(() => searchInput.focus(), 50);
+  focusSearchInput();
 });
+
+window.addEventListener('focus', () => {
+  focusSearchInput();
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    focusSearchInput();
+  }
+});
+
+function focusSearchInput() {
+  if (searchInput) {
+    setTimeout(() => {
+      searchInput.focus();
+      searchInput.select();
+    }, 50);
+  }
+}
 
 // Setup Realtime Tauri Event Listeners
 async function setupTauriListeners() {
@@ -32,6 +49,9 @@ async function setupTauriListeners() {
     try {
       await listen('clipboard-updated', () => {
         loadHistory();
+      });
+      await listen('window-focused', () => {
+        focusSearchInput();
       });
     } catch (err) {
       console.warn('Failed to register Tauri event listener:', err);
