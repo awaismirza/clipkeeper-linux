@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClipKeeper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="palette-container" id="palette">
+    <!-- Header with Search -->
+    <header class="palette-header">
+      <div class="search-box-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Type to filter clipboard history..." 
+          autocomplete="off"
+          spellcheck="false"
+          autofocus
+        />
+        <button id="clearSearchBtn" class="clear-btn" title="Clear Search">&times;</button>
+      </div>
+
+      <!-- Filter Tabs -->
+      <nav class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="text">Text</button>
+        <button class="filter-tab" data-filter="code">Code</button>
+        <button class="filter-tab" data-filter="url">Links</button>
+        <button class="filter-tab" data-filter="image">Images</button>
+        <button class="filter-tab" data-filter="pinned">📌 Pinned</button>
+      </nav>
+    </header>
+
+    <!-- History List -->
+    <main class="history-list" id="historyList">
+      <!-- Items dynamically populated by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="palette-footer">
+      <div class="keyboard-hints">
+        <span><kbd>↑</kbd><kbd>↓</kbd> Select</span>
+        <span><kbd>↵</kbd> Paste</span>
+        <span><kbd>P</kbd> Pin</span>
+        <span><kbd>Del</kbd> Delete</span>
+        <span><kbd>Esc</kbd> Close</span>
+      </div>
+
+      <div class="footer-actions">
+        <span id="itemCount">0 items</span>
+        <button id="clearAllBtn" class="clear-all-btn">Clear Unpinned</button>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
