@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    clipboard_linux_lib::run();
+    clipkeeper_lib::run();
 }

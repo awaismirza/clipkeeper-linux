@@ -1,7 +1,7 @@
 # AI AGENTS & ARCHITECTURE SPECIFICATION: ClipKeeper
 
 ## Project Overview
-**ClipKeeper** is an ultra-lightweight, production-ready system clipboard manager built with **Tauri v2** and **Rust**, specifically optimized for **Linux ARM64** (Ubuntu inside Parallels VM / bare-metal ARM) supporting both X11 and Wayland environments.
+**ClipKeeper** is an ultra-lightweight, production-ready system clipboard manager built with **Tauri v2** and **Rust**, targeting **Windows, macOS, and Linux** (X11 and Wayland).
 
 ---
 
@@ -49,7 +49,7 @@
 ## 3. Developer & AI Agent Working Guidelines
 
 ### 3.1 Strict Rules
-1. **Linux ARM Compatibility:** Always use `rusqlite` with feature `"bundled"` so compiling SQLite does not rely on host system C libraries.
+1. **Cross-Platform Compatibility:** Always use `rusqlite` with feature `"bundled"` so compiling SQLite does not rely on host system C libraries. Avoid `cfg(target_os = ...)` branches unless a platform genuinely needs different behavior (e.g. the paste modifier key: Cmd on macOS, Ctrl elsewhere).
 2. **Resource Efficiency:** Background polling loop in `monitor.rs` MUST sleep between checks (~350ms) and use SHA-256 content hashing to eliminate redundant DB writes and CPU spikes.
 3. **Graceful Degradation:** Clipboard read operations must handle empty or unsupported data gracefully without panicking.
 4. **Clean Exit & Single Instance:** Ensure only one instance of ClipKeeper runs at a time using `tauri-plugin-single-instance`.

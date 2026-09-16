@@ -16,7 +16,12 @@ jobs:
         include:
           - platform: "ubuntu-22.04"
             target: "x86_64-unknown-linux-gnu"
-            arch: "amd64"
+          - platform: "windows-latest"
+            target: "x86_64-pc-windows-msvc"
+          - platform: "macos-latest"
+            target: "aarch64-apple-darwin"
+          - platform: "macos-latest"
+            target: "x86_64-apple-darwin"
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -33,6 +38,7 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: install dependencies (ubuntu)
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
@@ -44,9 +50,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: v0.1.1
-          releaseName: "v0.1.1 - ClipKeeper Release"
-          releaseBody: "ClipKeeper System Clipboard Manager Linux Release for x86_64 and ARM64."
+          tagName: ${{ github.ref_name }}
+          releaseName: "ClipKeeper ${{ github.ref_name }}"
+          releaseBody: "ClipKeeper System Clipboard Manager — download the installer for your OS below (.msi for Windows, .deb/.rpm/.AppImage for Linux, .dmg for macOS)."
           releaseDraft: false
           prerelease: false
           args: --target ${{ matrix.target }}

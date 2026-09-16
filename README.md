@@ -1,9 +1,9 @@
-# ClipKeeper — System Clipboard Manager for Linux ARM64
+# ClipKeeper — Cross-Platform System Clipboard Manager
 
-**ClipKeeper** is an ultra-lightweight, production-ready system clipboard manager built with **Tauri v2** and **Rust**, specifically optimized for Linux environments (supporting both X11 and Wayland).
+**ClipKeeper** is an ultra-lightweight, production-ready system clipboard manager built with **Tauri v2** and **Rust**, available for **Windows**, **macOS**, and **Linux** (X11 and Wayland).
 
 ![ClipKeeper Release](https://img.shields.io/github/v/release/awaismirza/clipkeeper-linux?color=blue&label=version)
-![Platform](https://img.shields.io/badge/platform-Linux%20ARM64-orange)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
@@ -21,28 +21,37 @@
 
 ## Installation
 
-### Option 1: Debian / Ubuntu (`.deb`)
+Grab the installer for your OS from [Releases](https://github.com/awaismirza/clipkeeper-linux/releases/latest):
 
-Download the latest `.deb` package from [Releases](https://github.com/awaismirza/clipkeeper-linux/releases/latest):
+### Windows (`.msi`)
+
+Download `ClipKeeper_<version>_x64_en-US.msi` and run it.
+
+### macOS (`.dmg`)
+
+Download `ClipKeeper_<version>_<arch>.dmg`, open it, and drag ClipKeeper into Applications.
+On first launch you may need to right-click → Open, since the build isn't notarized.
+
+### Debian / Ubuntu (`.deb`)
 
 ```bash
-wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_arm64.deb
-sudo dpkg -i ClipKeeper_0.1.0_arm64.deb
+wget https://github.com/awaismirza/clipkeeper-linux/releases/latest/download/ClipKeeper_<version>_amd64.deb
+sudo dpkg -i ClipKeeper_<version>_amd64.deb
 ```
 
-### Option 2: Fedora / RHEL (`.rpm`)
+### Fedora / RHEL (`.rpm`)
 
 ```bash
-wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper-0.1.0-1.aarch64.rpm
-sudo rpm -i ClipKeeper-0.1.0-1.aarch64.rpm
+wget https://github.com/awaismirza/clipkeeper-linux/releases/latest/download/ClipKeeper-<version>-1.x86_64.rpm
+sudo rpm -i ClipKeeper-<version>-1.x86_64.rpm
 ```
 
-### Option 3: Standalone AppImage
+### Standalone AppImage
 
 ```bash
-wget https://github.com/awaismirza/clipkeeper-linux/releases/download/v0.1.0/ClipKeeper_0.1.0_aarch64.AppImage
-chmod +x ClipKeeper_0.1.0_aarch64.AppImage
-./ClipKeeper_0.1.0_aarch64.AppImage
+wget https://github.com/awaismirza/clipkeeper-linux/releases/latest/download/ClipKeeper_<version>_amd64.AppImage
+chmod +x ClipKeeper_<version>_amd64.AppImage
+./ClipKeeper_<version>_amd64.AppImage
 ```
 
 ---
@@ -67,14 +76,16 @@ chmod +x ClipKeeper_0.1.0_aarch64.AppImage
 
 - Node.js & npm
 - Rust (`cargo`)
-- System libraries: `libgtk-3-dev`, `libwebkit2gtk-4.1-dev`, `libappindicator3-dev`
+- Linux only: `libgtk-3-dev`, `libwebkit2gtk-4.1-dev`, `libappindicator3-dev`, `librsvg2-dev`
+- Windows only: [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) (WebView2 ships with Windows 10/11)
+- macOS only: Xcode Command Line Tools (`xcode-select --install`)
 
 ### Development Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/awaismirza/clipkeeper-linux.git
-cd clipboard-linux
+cd clipkeeper-linux
 
 # Install dependencies
 npm install
@@ -89,7 +100,8 @@ npm run tauri dev
 npm run tauri build
 ```
 
-Compiled binaries and package bundles (`.deb`, `.rpm`, `.AppImage`) will be generated inside `src-tauri/target/release/bundle/`.
+Compiled binaries and package bundles are generated inside `src-tauri/target/release/bundle/`:
+`.msi`/`.exe` on Windows, `.dmg`/`.app` on macOS, `.deb`/`.rpm`/`.AppImage` on Linux.
 
 ---
 

@@ -85,9 +85,14 @@ pub fn copy_to_clipboard(
             std::thread::sleep(std::time::Duration::from_millis(80));
             if let Ok(mut enigo) = enigo::Enigo::new(&enigo::Settings::default()) {
                 use enigo::Keyboard;
-                let _ = enigo.key(enigo::Key::Control, enigo::Direction::Press);
+                #[cfg(target_os = "macos")]
+                let modifier = enigo::Key::Meta;
+                #[cfg(not(target_os = "macos"))]
+                let modifier = enigo::Key::Control;
+
+                let _ = enigo.key(modifier, enigo::Direction::Press);
                 let _ = enigo.key(enigo::Key::Unicode('v'), enigo::Direction::Click);
-                let _ = enigo.key(enigo::Key::Control, enigo::Direction::Release);
+                let _ = enigo.key(modifier, enigo::Direction::Release);
             }
         });
     }
